@@ -12,17 +12,18 @@ import pymysql
 import time
 import datetime as dt
 
-conn = pymysql.connect(host = "localhost", user = "root", passwd = "13Tallabagh")
+# host, user and passwd can be obtained when mysql database engine and server is downloaded
+conn = pymysql.connect(host = [], user = [], passwd = [])
 cur = conn.cursor()
 
 # Note that existing database is being used which has been created for fundamental data.
-# For this repo to work, go through edgar_scraper repo, you atleast need to download and 
+# For this repo to work, either go through edgar_scraper repo. You atleast need to download and 
 # run the set.py and wikitable_scraper.py files for daily_price.py file to work 
 
 # Using existing database
-cur.execute("use financial_database1")
+cur.execute("use [database_name]")
 
-engine = create_engine("mysql+pymysql://root: 13Tallabagh@localhost: 3306/financial_database1")
+engine = create_engine("mysql+pymysql://[user]: [passwd]@[host]: [port]/[database_name]")
 dbConnection = engine.connect()
 
 def metadata():
@@ -52,7 +53,7 @@ def daily_price(IDX, COMPANIES_TO_RUN, endDate, token):
 
     for ticker in tickers[IDX:IDX + COMPANIES_TO_RUN]:
         
-        # Get the last date from the database, if it exists for which price is saved in the database
+        # Get the last date from the database if it exists, for which price data has been saved in the database
         try:
             sqlQuery = "select date from daily_price where ticker = '{0}' order by date DESC limit 1".format(ticker)
             dbDate = pd.read_sql(sqlQuery, dbConnection)
@@ -65,6 +66,7 @@ def daily_price(IDX, COMPANIES_TO_RUN, endDate, token):
         except:
             startDate = "2000-01-03"
         
+        # Create the request url used to obtain price data from tiingo
         url = "https://api.tiingo.com/tiingo/daily/"+ticker+"/prices"
         params = {"startDate": startDate, "endDate": endDate, "token": token}
         url_parts = list(urllib.parse.urlparse(url))
@@ -102,7 +104,7 @@ def daily_price(IDX, COMPANIES_TO_RUN, endDate, token):
     
     return df_price
 
-price = daily_price(IDX = 0, COMPANIES_TO_RUN = 5, endDate = "2019-12-07", token = "fa5cf2883a3fa0920b0a66ae5357fd47ce9d3cb8")
+price = daily_price(IDX = 0, COMPANIES_TO_RUN = 505, endDate = "2019-12-07", token = ["obtain the token by creating an account in tiingo"])
         
 
 # You can add your own list of securities and get prices without the database support
