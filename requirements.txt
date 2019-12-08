@@ -1,0 +1,22 @@
+Requirements:
+
+Python libraries used:
+pandas
+urllib
+pymysql
+sqlalchemy
+datetime
+time
+
+Since the program scrapes and exports the data into a local database,
+a functioning local database is a requirement. I used mysql for this
+purpose.
+
+Step by step requirement to step up the database and import data:
+1) Download MySql Workbench - lot of tutorials available to download workbench
+2) Run the set-up file and follow instructions given in the file - this should create
+a metadata table of all S&P 500 companies. Make sure path for wikitable_scraper.py and 
+engine object is properly assigned
+4) Open an account with tiingo and obtain a token. With a free account you can get data of 500 different companies at a time. For more check out https://www.tiingo.com/data/api. 
+3) Now you are all set to run the daily_price.py file - Note that the program currently runs for all sp500 companies thats in the symbol table in the database. Also the main function daily_price take few arguments. Make sure to pass on the arguments. 
+   
