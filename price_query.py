@@ -11,12 +11,12 @@ import pymysql
 from sqlalchemy import create_engine
 import matplotlib.pyplot as plt
 
-conn = pymysql.connect(host = "localhost", user = "root", passwd = "13Tallabagh")
+conn = pymysql.connect(host = [host_name], user = [user_name], passwd = [password])
 cur = conn.cursor()
 
-cur.execute("use financial_database")
+cur.execute("use [database_name]")
 
-engine = create_engine("mysql+pymysql://root: 13Tallabagh@localhost: 3306/financial_database")
+engine = create_engine("mysql+pymysql://[user_name]: [password]@[hostname]: [port]/[database_name]")
 
 def fetch_price(ticker, start_date, end_date):
     cur.execute("select symbol.id, symbol.ticker, symbol.sector, daily_price.date, daily_price.close, daily_price.adjClose from symbol join daily_price on symbol.id = daily_price.symbol_id where symbol.ticker = (%s) and daily_price.date >= (%s) and daily_price.date <= (%s)", (ticker, start_date, end_date))
