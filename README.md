@@ -6,7 +6,7 @@ The project is an attempt to collect price data of securities and save it an a m
 
 HOW THE MODEL WORKS
 
-First, when the setup.py file is run, a wikipedia page is scraped which contains data of all sp500 companies. That data is exported to a mysql database. The daily_price.py file gets the ticker and id data from the database and requests price data for each company from tiingo which delivers the data in json format, which is then converted into a dataframe and exported to the database. Measures have been taken to prevent duplication of data. 
+First, when the setup.py file is run, a wikipedia page is scraped which contains data of all sp500 companies. That data is exported to a mysql database. The daily_price.py file gets the ticker and id data from the database and requests price data for each company from tiingo or yahoo finance, whichever scraper is being used, which delivers the data in json format, which is then converted into a dataframe and exported to the database. Measures have been taken to prevent duplication of data. 
 
 Since database only contains metadata of sp500 companies, prices of these companies will only be collected. To extend beyond sp500 just add new companies to the symbol table in the database. 
 
