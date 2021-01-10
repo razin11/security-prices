@@ -2,7 +2,7 @@
 
 ABOUT THE PROJECT
 
-The project is an attempt to collect price data of securities and save it an a mysql database. Note that this project is highly complementary to the edgar-scraper project (https://github.com/razin11/edgar-scraper) and would recommend visiting the site before running the daily_price.py file. However, this repo could would work stand-alone as well if you run the setup file and follow the instructions in the requirements.txt file. The end product is a mysql database in your local server thtat contains price data of sp500 companies. 
+The project is an attempt to collect price data of securities and save it an a mysql database. I have two price scrapers on file (daily_price.py for tiingo and daily_price_yahoofinance.py for Yahoo Finance). Note that this project is highly complementary to the edgar-scraper project (https://github.com/razin11/edgar-scraper) and would recommend visiting the site before running the daily_price.py file. However, this repo could would work stand-alone as well if you run the setup file and follow the instructions in the requirements.txt file. The end product is a mysql database in your local server thtat contains price data of sp500 companies. 
 
 HOW THE MODEL WORKS
 
